@@ -16,10 +16,12 @@ namespace SentimentAnalysis
     {
         private static string AppPath => Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
-        private static string TrainDataPath = @"C:\Users\wdenejko\Documents\GitHub\tgdotnetmldemo\SentimentAnalysis\Data\train.tsv";
-        private static string TestDataPath = @"C:\Users\wdenejko\Documents\GitHub\tgdotnetmldemo\SentimentAnalysis\Data\test.tsv";
+        private static readonly string BaseDatasetsLocation = @"../../../Data";
+        private static readonly string TrainDataPath = $"{BaseDatasetsLocation}/wikipedia-detox-250-line-data.tsv";
+        private static readonly string TestDataPath = $"{BaseDatasetsLocation}/wikipedia-detox-250-line-test.tsv";
 
-        private static string ModelPath = @"C:\Users\Wojciech_Denejko\source\repos\MLDemo\MLDemo\SentimentAnalysis\MLModels\SentimentModel.zip";
+        private static readonly string BaseModelsPath = @"../../../MLModels";
+        private static readonly string ModelPath = $"{BaseModelsPath}/SentimentModel.zip";
 
         static void Main(string[] args)
         {
@@ -52,7 +54,7 @@ namespace SentimentAnalysis
             ConsoleHelper.PeekVectorColumnDataInConsole(mlContext, DefaultColumnNames.Features, trainingDataView, dataProcessPipeline, 1);
 
             // STEP 3: Set the training algorithm, then create and config the modelBuilder                            
-            var trainer = mlContext.BinaryClassification.Trainers.FastTree(labelColumn: DefaultColumnNames.Label, featureColumn: DefaultColumnNames.Features);
+            var trainer = mlContext.BinaryClassification.Trainers.LogisticRegression(labelColumn: DefaultColumnNames.Label, featureColumn: DefaultColumnNames.Features);
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 
             // STEP 4: Train the model fitting to the DataSet

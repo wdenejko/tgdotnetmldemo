@@ -7,24 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\test.tsv" />
-    <None Remove="Data\train.tsv" />
-    <None Remove="Data\wikipedia-detox-250-line-all.tsv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Data\wikipedia-detox-250-line-all.tsv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\train.tsv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\test.tsv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.ML" Version="0.10.0" />
@@ -40,6 +22,15 @@
 
   <ItemGroup>
     <Folder Include="MLModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\wikipedia-detox-250-line-data.tsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\wikipedia-detox-250-line-test.tsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
